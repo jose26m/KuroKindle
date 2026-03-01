@@ -1,0 +1,133 @@
+body {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 6px;
+}
+
+ul {
+    list-style: none;
+}
+
+#mensagem {
+  display: none;
+  color: red;
+  margin-top: 10px;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+#lista-mangas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 180px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card span {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+main {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+main img {
+  display: block;
+  margin: 20px auto;
+}
+
+main h2 {
+  margin-top: 30px;
+}
+
+main p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+main ul {
+  list-style: none;
+  padding: 0;
+}
+
+main li {
+  margin-bottom: 6px;
+}
+
+.rodape {
+  margin-top: 40px;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.rodape a {
+  color: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+.logo {
+  width: 200px; 
+  height: auto;
+}
+
+.textos h1 {
+  margin: 0;
+}
+
+.textos h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.textos p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.topo {
+  justify-content: center;
+}
