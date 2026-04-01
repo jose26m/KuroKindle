@@ -35,4 +35,29 @@ if (campoBusca && mangas.length > 0 && msg) {
   });
 }
 
-const btnTema = document.getElementById("btn-tema");
+const btn = document.getElementById('theme-toggle');
+
+if (localStorage.getItem('tema') === 'dark') {
+  document.body.classList.add('dark-mode');
+  btn.textContent = '☀️';
+} else {
+  btn.textContent = '🌙';
+}
+
+btn.addEventListener('click', () => {
+  document.body.classList.add('fade-transition');
+
+  setTimeout(() => {
+    document.body.classList.remove('fade-transition');
+  }, 300);
+
+  document.body.classList.toggle('dark-mode');
+
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('tema', 'dark');
+    btn.textContent = '☀️';
+  } else {
+    localStorage.setItem('tema', 'light');
+    btn.textContent = '🌙';
+  }
+});
