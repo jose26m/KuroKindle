@@ -213,3 +213,8 @@ body {
     opacity: 1;
   }
 }
+
+.card:hover {
+  transform: scale(1.08);
+  z-index: 2;
+}
