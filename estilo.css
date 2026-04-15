@@ -218,3 +218,23 @@ body {
   transform: scale(1.08);
   z-index: 2;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.botao{
+  background: #0077ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.voltar{
+  background: #ff4757;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
