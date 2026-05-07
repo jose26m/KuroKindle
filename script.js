@@ -10,11 +10,10 @@ if (campoBusca && mangas.length > 0 && msg) {
 
     if (texto === "") {
       msg.style.display = "none";
-
       mangas.forEach(function (manga) {
-        manga.style.display = "block";
+        manga.style.display = "flex"; // MUDADO PARA FLEX
+        manga.style.opacity = "1";
       });
-
       return;
     }
 
@@ -24,10 +23,21 @@ if (campoBusca && mangas.length > 0 && msg) {
       const nome = manga.textContent.toLowerCase();
 
       if (nome.includes(texto)) {
-        manga.style.display = "block";
+        manga.style.display = "flex"; // MUDADO PARA FLEX
+        manga.style.opacity = "1";
+        manga.style.height = "auto"; // GARANTE ALTURA
         encontrou = true;
       } else {
-        manga.style.display = "none";
+        manga.style.opacity = "0"; // USA OPACITY EM VEZ DE NONE
+        manga.style.height = "0"; // ESCONDE SEM QUEBRAR HOVER
+        manga.style.padding = "0";
+        manga.style.margin = "0";
+        manga.style.overflow = "hidden";
+        setTimeout(() => {
+          if (manga.style.opacity === "0") {
+            manga.style.display = "none";
+          }
+        }, 200);
       }
     });
 
@@ -35,6 +45,7 @@ if (campoBusca && mangas.length > 0 && msg) {
   });
 }
 
+// Theme toggle (mantém igual)
 const btn = document.getElementById('theme-toggle');
 
 if (localStorage.getItem('tema') === 'dark') {
@@ -46,7 +57,6 @@ if (localStorage.getItem('tema') === 'dark') {
 
 btn.addEventListener('click', () => {
   document.body.classList.add('fade-transition');
-
   setTimeout(() => {
     document.body.classList.remove('fade-transition');
   }, 300);
