@@ -69,20 +69,6 @@ body {
   opacity: 0.9;
 }
 
-#theme-toggle {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  padding: 8px 14px;
-  border-radius: 25px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
 
 #theme-toggle:hover {
   background: rgba(0, 191, 255, 0.2);
@@ -369,3 +355,196 @@ input:focus {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* BOTÃO DO TEMA NO HEADER */
+.header-theme-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-theme-btn:hover {
+  background: rgba(0, 191, 255, 0.2);
+  border-color: var(--accent-blue);
+  transform: scale(1.05);
+}
+
+/* MODO CLARO */
+body.light-mode {
+  --black: #f8fafc;
+  --dark-bg: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --text-primary: #1e293b;
+  --text-secondary: rgba(30, 41, 59, 0.8);
+  --tooltip-bg: rgba(255, 255, 255, 0.98);
+  background: var(--black);
+}
+
+body.light-mode .topo {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: var(--border-color);
+}
+
+body.light-mode .header-theme-btn {
+  background: rgba(248, 250, 252, 0.9);
+  border-color: var(--border-color);
+}
+
+body.light-mode .header-theme-btn:hover {
+  background: rgba(0, 191, 255, 0.15);
+}
+
+body.light-mode #lista-mangas .card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--border-color);
+}
+
+body.light-mode #lista-mangas .card:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15), 0 0 20px rgba(0,191,255,0.3);
+}
+
+body.light-mode input {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--border-color);
+}
+
+body.light-mode #mensagem {
+  background: rgba(0, 191, 255, 0.15);
+  border-color: rgba(0, 191, 255, 0.4);
+  color: var(--accent-blue);
+}
+
+body.light-mode .rodape {
+  background: #ffffff;
+  border-top-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+body.light-mode .card span {
+  color: var(--text-primary);
+}
+
+body.light-mode .card a::after {
+  background: var(--tooltip-bg);
+  color: var(--text-primary);
+  border-color: rgba(0,0,0,0.1);
+}
+
+body.no-transition *,
+body.no-transition *::before,
+body.no-transition *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+.header-theme-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: transform 0.2s ease; /* SÓ hover */
+}
+
+.header-theme-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ===== TOOLTIP SINOPSE + VOLUMES ===== */
+.card {
+  position: relative;
+}
+
+.card::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(15px);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  max-width: 300px;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  pointer-events: none;
+}
+
+.light-mode .card::after {
+  background: rgba(255,255,255,0.95);
+  color: #333;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.card:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* SETA DO TOOLTIP */
+.card::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: rgba(0,0,0,0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  margin-bottom: -1px;
+}
+
+.light-mode .card::before {
+  border-top-color: rgba(255,255,255,0.95);
+}
+
+.card:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* RESPONSIVO MOBILE */
+@media (max-width: 768px) {
+  .card::after {
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    font-size: 0.85rem;
+    padding: 12px 16px;
+  }
+  
+  .card::before {
+    display: none;
+  }
+}
+

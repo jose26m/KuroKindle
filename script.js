@@ -1,7 +1,9 @@
 const campoBusca = document.getElementById("busca");
 const mangas = document.querySelectorAll("#lista-mangas li");
 const msg = document.getElementById("mensagem");
+const btn = document.getElementById('theme-toggle');
 
+// ===== BUSCA (MANHÃ SEM MUDANÇA) =====
 if (campoBusca && mangas.length > 0 && msg) {
   msg.style.display = "none";
 
@@ -11,7 +13,7 @@ if (campoBusca && mangas.length > 0 && msg) {
     if (texto === "") {
       msg.style.display = "none";
       mangas.forEach(function (manga) {
-        manga.style.display = "flex"; // MUDADO PARA FLEX
+        manga.style.display = "flex";
         manga.style.opacity = "1";
       });
       return;
@@ -23,13 +25,13 @@ if (campoBusca && mangas.length > 0 && msg) {
       const nome = manga.textContent.toLowerCase();
 
       if (nome.includes(texto)) {
-        manga.style.display = "flex"; // MUDADO PARA FLEX
+        manga.style.display = "flex";
         manga.style.opacity = "1";
-        manga.style.height = "auto"; // GARANTE ALTURA
+        manga.style.height = "auto";
         encontrou = true;
       } else {
-        manga.style.opacity = "0"; // USA OPACITY EM VEZ DE NONE
-        manga.style.height = "0"; // ESCONDE SEM QUEBRAR HOVER
+        manga.style.opacity = "0";
+        manga.style.height = "0";
         manga.style.padding = "0";
         manga.style.margin = "0";
         manga.style.overflow = "hidden";
@@ -45,29 +47,40 @@ if (campoBusca && mangas.length > 0 && msg) {
   });
 }
 
-// Theme toggle (mantém igual)
-const btn = document.getElementById('theme-toggle');
+// ===== TEMA INSTANTÂNEO (SEU CÓDIGO MELHORADO) =====
+const temaSalvo = localStorage.getItem('tema') || 'dark';
 
-if (localStorage.getItem('tema') === 'dark') {
-  document.body.classList.add('dark-mode');
-  btn.textContent = '☀️';
-} else {
-  btn.textContent = '🌙';
-}
+// Aplica INSTANTANEAMENTE
+document.body.classList.toggle('light-mode', temaSalvo === 'light');
+btn.textContent = temaSalvo === 'light' ? '☀️' : '🌙';
 
+// FIX: MUDA NA HORA DO CLICK
 btn.addEventListener('click', () => {
-  document.body.classList.add('fade-transition');
+  // DESABILITA TRANSITION TEMPORARIAMENTE
+  document.body.classList.add('no-transition');
+  
+  const isLight = document.body.classList.contains('light-mode');
+  const novoTema = isLight ? 'dark' : 'light';
+  
+  // MUDA INSTANTANEAMENTE
+  document.body.classList.toggle('light-mode');
+  localStorage.setItem('tema', novoTema);
+  btn.textContent = novoTema === 'light' ? '☀️' : '🌙';
+  
+  // REATIVA TRANSITION APÓS 50ms
   setTimeout(() => {
-    document.body.classList.remove('fade-transition');
-  }, 300);
-
-  document.body.classList.toggle('dark-mode');
-
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('tema', 'dark');
-    btn.textContent = '☀️';
-  } else {
-    localStorage.setItem('tema', 'light');
-    btn.textContent = '🌙';
-  }
+    document.body.classList.remove('no-transition');
+  }, 50);
 });
+
+// ===== TOOLTIP MELHORADO (OPCIONAL) =====
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.02)';
+  });
+  
+  card.addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+  });
+});
+
