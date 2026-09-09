@@ -75,4 +75,3 @@ document.querySelectorAll('.card').forEach(card => {
     this.style.transform = 'scale(1)';
   });
 });
-
